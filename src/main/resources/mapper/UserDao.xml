@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--对应接口，写入sql语句-->
+
+<mapper namespace="com.honeypot.honeypot.dao.UserDao">
+    <resultMap id="userMap" type="com.honeypot.honeypot.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="realName" property="realName"/>
+        <result column="authority" property="authority"/>
+        <result column="dept" property="dept"/>
+    </resultMap>
+    <select id="queryUser" resultType="com.honeypot.honeypot.entity.User">
+       SELECT *
+       FROM user
+    </select>
+
+</mapper>
