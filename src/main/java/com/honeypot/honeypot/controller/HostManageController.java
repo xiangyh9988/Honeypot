@@ -166,18 +166,20 @@ public class HostManageController {
      * @return
      */
     @GetMapping("/addServer")
-    public Map<String,Object> addServer(@RequestParam(value = "server",required = false, defaultValue = "") Server server){
+    public Map<String,Object> addServer(@RequestParam(value = "server") Object server){
         Map<String,Object> modelMap = new HashMap<String,Object>();
-        Server server1 = server;
+//        Server server1 = server;
+        System.out.println(server);
+
         List<Server> serverList = null;
-        if (server1 != null){
-            int success = serverService.addServer(server1);
-            serverList = serverService.getAllServer();
-            modelMap.put("success",true);
-        }else {
-            modelMap.put("success",false);
-        }
-        modelMap.put("serverList",serverList);
+//        if (server1 != null){
+//            int success = serverService.addServer(server1);
+//            serverList = serverService.getAllServer();
+//            modelMap.put("success",true);
+//        }else {
+//            modelMap.put("success",false);
+//        }
+//        modelMap.put("serverList",serverList);
         return modelMap;
     }
 
