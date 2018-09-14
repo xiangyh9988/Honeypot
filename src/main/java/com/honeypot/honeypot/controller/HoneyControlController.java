@@ -19,7 +19,7 @@ public class HoneyControlController {
     @RequestMapping(value = "/queryuser",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> queryUserList(){
-
+        int  x  = 1;
         return null;
     }
 }
