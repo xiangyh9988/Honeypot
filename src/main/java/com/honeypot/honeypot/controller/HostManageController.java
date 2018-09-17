@@ -165,10 +165,14 @@ public class HostManageController {
      * @param server
      * @return
      */
-    @GetMapping("/addServer")
-    public Map<String,Object> addServer(@RequestParam(value = "server",required = false, defaultValue = "") Server server){
+//    @PostMapping("/addServer")
+    @RequestMapping(value = "/addServer",method = RequestMethod.POST)
+    public Map<String,Object> addServer(@RequestParam("serverIp") String serverIp,@RequestParam("server")String server,@RequestParam("id") Integer id) {
         Map<String,Object> modelMap = new HashMap<String,Object>();
-        Server server1 = server;
+        Server server1 = new Server();
+        server1.setServer(server);
+        server1.setServerIp(serverIp);
+        server1.setId(id);
         List<Server> serverList = null;
         if (server1 != null){
             int success = serverService.addServer(server1);
@@ -183,19 +187,20 @@ public class HostManageController {
 
     /**
      * 删除服务器
-     * @param server
+     * @param id
      * @return
      */
     @GetMapping("/delServer")
-    public Map<String,Object> delServer(@RequestParam(value = "server",required = false, defaultValue = "") Server server){
+    public Map<String,Object> delServer(@RequestParam("id")Integer id){
         Map<String,Object> modelMap = new HashMap<String,Object>();
-        Server server1 = server;
+        Server server = new Server();
+        server.setId(id);
         List<Server> serverList = null;
         int ifSuccess = 0;
-        if (server1.getId() >0){
-            ifSuccess = serverService.delServerByServerId(new Integer(server1.getId()));
-        }else if (server1.getServer() != null && !server1.getServer().equals("")){
-            ifSuccess = serverService.delServerByServerName(server1.getServer());
+        if (server.getId() >0){
+            ifSuccess = serverService.delServerByServerId(new Integer(server.getId()));
+        }else if (server.getServer() != null && !server.getServer().equals("")){
+            ifSuccess = serverService.delServerByServerName(server.getServer());
         }else {
             modelMap.put("success",false);
         }
