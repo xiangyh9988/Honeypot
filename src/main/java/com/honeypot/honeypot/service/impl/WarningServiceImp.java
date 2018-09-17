@@ -174,4 +174,47 @@ public class WarningServiceImp implements WarningService {
         Collections.reverse(numList);
         return numList;
     }
+
+    @Override
+    public List<Map<String,Object>> getAllWarningSum() {
+        List<WarningSum> warningSumList = warningDao.getAllWarningSum();
+        Map<String,Object> modelMap1 = new HashMap<>();
+        Map<String,Object> modelMap2 = new HashMap<>();
+        Map<String,Object> modelMap0 = new HashMap<>();
+        List<String> dateList0 = new ArrayList<>();
+        List<String> dateList1 = new ArrayList<>();
+        List<String> dateList2 = new ArrayList<>();
+        List<Integer> warningSum1 = new ArrayList<>();
+        List<Integer> warningSum0 = new ArrayList<>();
+        List<Integer> warningSum2 = new ArrayList<>();
+
+        for (WarningSum warningSum :
+                warningSumList) {
+            if (warningSum.getFlag() == 0){
+                dateList0.add(warningSum.getTime());
+                warningSum0.add(warningSum.getNum());
+            }
+            if (warningSum.getFlag() == 1){
+                dateList1.add(warningSum.getTime());
+                warningSum1.add(warningSum.getNum());
+            }
+            if (warningSum.getFlag() == 2){
+                dateList2.add(warningSum.getTime());
+                warningSum2.add(warningSum.getNum());
+            }
+        }
+        modelMap0.put("dateList0",dateList0);
+        modelMap0.put("warningSum0",warningSum0);
+
+        modelMap1.put("dateList1",dateList1);
+        modelMap1.put("warningSum1",warningSum1);
+
+        modelMap2.put("dateList2",dateList2);
+        modelMap2.put("warningSum2",warningSum2);
+        List<Map<String,Object>> modelMaps = new ArrayList<>();
+        modelMaps.add(modelMap0);
+        modelMaps.add(modelMap1);
+        modelMaps.add(modelMap2);
+        return modelMaps;
+    }
 }

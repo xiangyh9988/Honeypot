@@ -1,5 +1,7 @@
 package com.honeypot.honeypot.service;
 
+import com.honeypot.honeypot.entity.WarningSum;
+
 import java.util.List;
 import java.util.Map;
 
@@ -23,5 +25,7 @@ public interface WarningService {
      * @return
      */
   List<List<Object>> getNumOfWarningFor7DaysNew(Integer flag);
+
+  List<Map<String,Object>> getAllWarningSum();
 
 }

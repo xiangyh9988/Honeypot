@@ -23,6 +23,15 @@ public class PotServiceImpl implements PotService {
         }
         return potList;
     }
+    @Override
+    public List<Pot> getHostPotByType(String type) {
+        List<Pot> potList = new ArrayList<Pot>();
+        potList = potDao.getHostPotByType(type);
+        for(int i = 0; i < potList.size();i++){
+            potList.get(i).setId(i+1);
+        }
+        return potList;
+    }
 
     @Override
     public List<Pot> getPotByIp(String ip) {

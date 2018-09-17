@@ -20,5 +20,9 @@
         FROM  warning
         order by  warn_time desc
     </select>
+    <select id="getAllWarningSum" resultType="com.honeypot.honeypot.entity.WarningSum">
+        SELECT *
+        FROM warning_sum
+    </select>
 
 </mapper>

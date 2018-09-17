@@ -10,6 +10,6 @@ import java.util.Map;
 @Mapper
 public interface PotDao {
     List<Pot> getPotByType(@Param("type") String type);
-
+    List<Pot> getHostPotByType(@Param("type") String type);
     List<Pot> getPotByIp(@Param("ip") String ip);
 }
