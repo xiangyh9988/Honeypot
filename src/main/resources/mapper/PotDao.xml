@@ -16,10 +16,15 @@
 
 
     <select id="getPotByType" resultType="com.honeypot.honeypot.entity.Pot">
+    SELECT *
+    FROM pot
+    WHERE type = "复合蜜罐" or type = "路由器蜜罐"
+</select>
+    <select id="getHostPotByType" resultType="com.honeypot.honeypot.entity.Pot">
         SELECT *
         FROM pot
-        WHERE type = "复合蜜罐" or type = "路由器蜜罐"
-    </select>
+        WHERE type = "win732"
+</select>
     <select id="getPotByIp" resultType="com.honeypot.honeypot.entity.Pot">
         SELECT *
         FROM pot
