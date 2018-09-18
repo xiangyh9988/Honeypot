@@ -14,10 +14,4 @@ public interface WarningDao {
     Integer getNumForOneDay(@Param("warn_time") String time, @Param("flag") Integer flag);
 
     List<WarningCriterial> getLastWarning();
-
-    /**
-     * 获取所有警告信息
-     * @return
-     */
-    List<WarningSum> getAllWarningSum();
 }

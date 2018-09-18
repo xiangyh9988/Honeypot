@@ -165,42 +165,39 @@ public class HostManageController {
      * @param server
      * @return
      */
-//    @PostMapping("/addServer")
-    @RequestMapping(value = "/addServer",method = RequestMethod.POST)
-    public Map<String,Object> addServer(@RequestParam("serverIp") String serverIp,@RequestParam("server")String server,@RequestParam("id") Integer id) {
+    @GetMapping("/addServer")
+    public Map<String,Object> addServer(@RequestParam(value = "server") Object server){
         Map<String,Object> modelMap = new HashMap<String,Object>();
-        Server server1 = new Server();
-        server1.setServer(server);
-        server1.setServerIp(serverIp);
-        server1.setId(id);
+//        Server server1 = server;
+        System.out.println(server);
+
         List<Server> serverList = null;
-        if (server1 != null){
-            int success = serverService.addServer(server1);
-            serverList = serverService.getAllServer();
-            modelMap.put("success",true);
-        }else {
-            modelMap.put("success",false);
-        }
-        modelMap.put("serverList",serverList);
+//        if (server1 != null){
+//            int success = serverService.addServer(server1);
+//            serverList = serverService.getAllServer();
+//            modelMap.put("success",true);
+//        }else {
+//            modelMap.put("success",false);
+//        }
+//        modelMap.put("serverList",serverList);
         return modelMap;
     }
 
     /**
      * 删除服务器
-     * @param id
+     * @param server
      * @return
      */
     @GetMapping("/delServer")
-    public Map<String,Object> delServer(@RequestParam("id")Integer id){
+    public Map<String,Object> delServer(@RequestParam(value = "server",required = false, defaultValue = "") Server server){
         Map<String,Object> modelMap = new HashMap<String,Object>();
-        Server server = new Server();
-        server.setId(id);
+        Server server1 = server;
         List<Server> serverList = null;
         int ifSuccess = 0;
-        if (server.getId() >0){
-            ifSuccess = serverService.delServerByServerId(new Integer(server.getId()));
-        }else if (server.getServer() != null && !server.getServer().equals("")){
-            ifSuccess = serverService.delServerByServerName(server.getServer());
+        if (server1.getId() >0){
+            ifSuccess = serverService.delServerByServerId(new Integer(server1.getId()));
+        }else if (server1.getServer() != null && !server1.getServer().equals("")){
+            ifSuccess = serverService.delServerByServerName(server1.getServer());
         }else {
             modelMap.put("success",false);
         }
@@ -307,7 +304,5 @@ public class HostManageController {
     public List<Pot> getPotByIp(@RequestParam(value = "ip")String ip){
         return potService.getPotByIp(ip+"%");
     }
-
-
 
 }

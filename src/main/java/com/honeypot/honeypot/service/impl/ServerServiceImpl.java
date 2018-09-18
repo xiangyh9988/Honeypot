@@ -40,6 +40,6 @@ public class ServerServiceImpl implements ServerService {
 
     @Override
     public int addServer(Server server) {
-        return serverDao.addServer(server);
+        return serverDao.addServer(server).size();
     }
 }

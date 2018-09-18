@@ -48,6 +48,6 @@ public interface ServerDao {
      * @param server
      * @return
      */
-    int addServer(@Param("server") Server server);
+    List<Server> addServer(@Param("server") Server server);
 
 }

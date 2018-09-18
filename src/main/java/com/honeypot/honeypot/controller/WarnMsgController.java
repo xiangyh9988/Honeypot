@@ -75,10 +75,5 @@ public class WarnMsgController {
         return res;
     }
 
-    @GetMapping("/getAllWarningSum")
-    public List<Map<String,Object>> getAllWarningSum(){
-        return warningService.getAllWarningSum();
-    }
-
 
 }
