@@ -5,16 +5,13 @@ package com.honeypot.honeypot.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.honeypot.honeypot.entity.User;
-import com.honeypot.honeypot.entity.UserCriteria;
 import com.honeypot.honeypot.service.UserService;
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sun.misc.BASE64Encoder;
 
 import java.security.MessageDigest;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin
