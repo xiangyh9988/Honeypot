@@ -17,4 +17,9 @@ public interface DepartmentDao {
     public boolean delDept(int id);
     // 更新部门
     public boolean updateDept(Department updateDepartment);
+    /**
+     * 获取所有department信息
+     * @return
+     */
+    List<Department> getAllTypes();
 }

@@ -1,20 +1,19 @@
 package com.honeypot.honeypot.service.impl;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.honeypot.honeypot.dao.UserDao;
 import com.honeypot.honeypot.entity.User;
 import com.honeypot.honeypot.entity.UserCriteria;
 import com.honeypot.honeypot.service.UserService;
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
 
 import java.security.MessageDigest;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,7 +33,7 @@ public class UserServiceImpl implements UserService {
      *       {"id": xx, "username": xx, "realName": xx, "role": xx, "department": xx}]
      */
     @Override
-    public JSONArray getAllUsers() {
+    public com.alibaba.fastjson.JSONArray getAllUsers() {
         List<User> users = userDao.getAllUsers();
         JSONArray array = new JSONArray();
 

@@ -1,15 +1,15 @@
 package com.honeypot.honeypot.service;
 
 
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import com.honeypot.honeypot.entity.SystemSecurityConf;
-import org.json.JSONObject;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface SystemSecurityConfService {
     @Transactional
-    JSONObject getSystemSecurityConf();
+    com.alibaba.fastjson.JSONObject getSystemSecurityConf() throws JSONException;
 
     @Transactional
     SystemSecurityConf getAConfByName(String confName);

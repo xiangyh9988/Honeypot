@@ -45,4 +45,9 @@
         SET duty_name=#{dutyName}
         WHERE dep_name=#{depName}
     </update>
+
+    <select id="getAllTypes" resultType="com.honeypot.honeypot.entity.Department">
+        SELECT *
+        FROM department
+    </select>
 </mapper>

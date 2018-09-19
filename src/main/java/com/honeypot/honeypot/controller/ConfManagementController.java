@@ -3,14 +3,13 @@
  */
 package com.honeypot.honeypot.controller;
 
-
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.honeypot.honeypot.dao.DepartmentDao;
 import com.honeypot.honeypot.entity.Department;
 import com.honeypot.honeypot.entity.SystemSecurityConf;
 import com.honeypot.honeypot.service.DepartmentManagementService;
 import com.honeypot.honeypot.service.SystemSecurityConfService;
-import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
