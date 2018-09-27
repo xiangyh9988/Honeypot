@@ -4,8 +4,10 @@ package com.honeypot.honeypot.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.honeypot.honeypot.dao.UserDao;
+import com.honeypot.honeypot.entity.Department;
 import com.honeypot.honeypot.entity.User;
 import com.honeypot.honeypot.entity.UserCriteria;
+import com.honeypot.honeypot.service.DepartmentManagementService;
 import com.honeypot.honeypot.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +15,16 @@ import org.springframework.stereotype.Service;
 import sun.misc.BASE64Encoder;
 
 import java.security.MessageDigest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
+    @Autowired
+    private DepartmentManagementService departmentManagementService;
 
     /**
      * 获取所有用户信息
@@ -33,18 +39,21 @@ public class UserServiceImpl implements UserService {
      *       {"id": xx, "username": xx, "realName": xx, "role": xx, "department": xx}]
      */
     @Override
-    public com.alibaba.fastjson.JSONArray getAllUsers() {
+    public JSONArray getAllUsers() {
         List<User> users = userDao.getAllUsers();
         JSONArray array = new JSONArray();
+        Map<Integer, String> roleMap = new HashMap<Integer, String>();
+        roleMap.put(1, "系统管理员");
+        roleMap.put(2, "安全审计管理员");
+        roleMap.put(3, "普通用户");
+        roleMap.put(4, "安全保密管理员");
 
         for (User user : users){
-            UserCriteria uc = new UserCriteria(user);
             JSONObject one = new JSONObject();
-            one.put("id", uc.getId());
-            one.put("username", uc.getUsername());
-            one.put("realName", uc.getRealName());
-            one.put("role", uc.getAuthority());
-            one.put("department", uc.getDept());
+            one.put("username", user.getUsername());
+            one.put("realName", user.getRealName());
+            one.put("role", roleMap.get(user.getAuthority()));
+            one.put("department", departmentManagementService.getDeptById(user.getDept()).getDepName());
             array.add(one);
         }
         return array;
@@ -94,7 +103,7 @@ public class UserServiceImpl implements UserService {
             System.out.println(e);
         }
         newUser.setId(userJson.getIntValue("id"));
-        newUser.setusername(userJson.getString("username"));
+        newUser.setUsername(userJson.getString("username"));
         newUser.setPassword(passwordMD5);
         newUser.setRealName(userJson.getString("realName"));
         newUser.setAuthority(userJson.getIntValue("authority"));
@@ -123,8 +132,8 @@ public class UserServiceImpl implements UserService {
         JSONObject result = new JSONObject();
         for(int i = 0; i < delArray.size(); i++){
             JSONObject obj = delArray.getJSONObject(i);
-            if(!userDao.delUser(obj.getIntValue("id"))){
-                result.put("result", obj.getIntValue("id"));
+            if(!userDao.delUser(obj.getString("username"))){
+                result.put("result", obj.getString("username"));
                 return result;
             }
         }
@@ -137,7 +146,7 @@ public class UserServiceImpl implements UserService {
      * @param updateJson
      * 前端传来json形式为
      * {
-     *     "id": x,
+     *     "username": x,
      *     "oldpassword": xxxxx,
      *     "newpassword": xxxxxx,
      *     "newrealname": xxxx,
@@ -152,7 +161,7 @@ public class UserServiceImpl implements UserService {
     public JSONObject updateUser(JSONObject updateJson){
         JSONObject result = new JSONObject();
         User update = new User();
-        update = getUserById(updateJson.getIntValue("id"));
+        update = getUserByUsername(updateJson.getString("username"));
         if(!updateJson.getString("newpassword").equals(""))
         {
             String newpasswordMD5 = new String();

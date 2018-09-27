@@ -64,7 +64,7 @@ public class UserCriteria {
     // 还存在问题，当部门增加时，不能依靠switch-case来选择，应当查表对应
     public UserCriteria(User user){
         this.id = user.getId();
-        this.username = user.getusername();
+        this.username = user.getUsername();
         this.password = user.getPassword();
         this.realName = user.getRealName();
         switch(user.getAuthority()){
