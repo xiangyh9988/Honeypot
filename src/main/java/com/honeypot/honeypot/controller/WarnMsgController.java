@@ -1,5 +1,9 @@
 package com.honeypot.honeypot.controller;
 
+import com.honeypot.honeypot.entity.AlarmInfo;
+import com.honeypot.honeypot.entity.AlarmInfoResult;
+import com.honeypot.honeypot.entity.WarningSum;
+import com.honeypot.honeypot.service.WarnMsgService;
 import com.honeypot.honeypot.service.WarningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +22,9 @@ import java.util.Map;
 public class WarnMsgController {
     @Autowired
     private WarningService warningService;
+
+    @Autowired
+    private WarnMsgService warnMsgService;
 
     /**
      * 没问题
@@ -74,6 +81,39 @@ public class WarnMsgController {
         res.add(warningListForV);
         return res;
     }
+
+    @GetMapping("/getAllWarningSum")
+    public Map<String,Object> getAllWarningSum(){
+        Map<String,Object> modelMap = new HashMap<>();
+        List<String> timeList = new ArrayList<>();
+        List<Integer> numList = new ArrayList<>();
+        List<WarningSum> warningSumList = new ArrayList<>();
+        warningSumList = warningService.getAllWarningSum(2);
+        for (WarningSum warningSum :warningSumList){
+            timeList.add(warningSum.getTime());
+            numList.add(warningSum.getNum());
+        }
+        modelMap.put("timeList",timeList);
+        modelMap.put("numList",numList);
+
+        return modelMap;
+    }
+    @GetMapping("/getWarnMsgNum")
+    public Map<String,Object> getWarnMsgNum(){
+        Map<String,Object> modelMap = new HashMap<>();
+//        modelMap = warnMsgService.getWarnMsgNum();
+        return warnMsgService.getWarnMsgNum();
+    }
+
+    @GetMapping("/getNewWarnMsg")
+    public List<AlarmInfoResult> getNewWarnMsg(){
+        return warnMsgService.getNewWarnMsg();
+    }
+    @GetMapping("/getMoreWarnMsg")
+    public List<AlarmInfoResult> getMoreWarnMsg(){
+        return warnMsgService.getMoreWarnMsg();
+    }
+
 
 
 }

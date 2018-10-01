@@ -5,10 +5,10 @@
 <!--对应接口，写入sql语句-->
 
 <mapper namespace="com.honeypot.honeypot.dao.ServerDao">
-    <insert id="addServer">
+    <insert id="addServer" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
         INSERT INTO
-        server(id,server,server_ip)
-        VALUES (#{server.id},#{server.server},#{server.serverIp})
+        server(server,server_ip)
+        VALUES (#{server.server},#{server.serverIp})
     </insert>
     <delete id="delServerByServerId">
         DELETE FROM server

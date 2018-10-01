@@ -20,5 +20,11 @@
         FROM  warning
         order by  warn_time desc
     </select>
+    <!--<select id="getWarningByType" resultType="com.honeypot.honeypot.entity.WarningSum">-->
+        <!--SELECT *-->
+        <!--FROM warning_sum-->
+        <!--WHERE flag = #{flag}-->
+        <!--ORDER BY id DESC-->
+    <!--</select>-->
 
 </mapper>

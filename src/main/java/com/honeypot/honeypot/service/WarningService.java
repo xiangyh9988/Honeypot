@@ -1,5 +1,7 @@
 package com.honeypot.honeypot.service;
 
+import com.honeypot.honeypot.entity.WarningSum;
+
 import java.util.List;
 import java.util.Map;
 
@@ -24,4 +26,9 @@ public interface WarningService {
      */
   List<List<Object>> getNumOfWarningFor7DaysNew(Integer flag);
 
+    /**
+     * 获取最新的虚拟警告数据
+     * @return
+     */
+  List<WarningSum> getAllWarningSum(Integer flag);
 }

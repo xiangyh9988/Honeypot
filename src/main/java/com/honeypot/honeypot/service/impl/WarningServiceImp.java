@@ -174,4 +174,15 @@ public class WarningServiceImp implements WarningService {
         Collections.reverse(numList);
         return numList;
     }
+
+    @Override
+    public List<WarningSum> getAllWarningSum(Integer flag) {
+        List<WarningSum> warningSumList = new ArrayList<>();
+        warningSumList = warningDao.getWarningByType(flag);
+        while(warningSumList.size() > 8){
+            warningSumList.remove(warningSumList.size() - 1);
+        }
+        System.out.println(warningSumList.size());
+        return warningSumList;
+    }
 }
