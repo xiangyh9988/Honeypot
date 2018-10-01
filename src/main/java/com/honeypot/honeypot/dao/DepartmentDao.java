@@ -1,9 +1,9 @@
 package com.honeypot.honeypot.dao;
 
 import com.honeypot.honeypot.entity.Department;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 public interface DepartmentDao {
     // 获取全部部门信息
     public List<Department> getAllDepts();
@@ -14,7 +14,7 @@ public interface DepartmentDao {
     // 增加部门
     public boolean addDept(Department newDepartment);
     // 删除部门
-    public boolean delDept(int id);
+    public boolean delDept(String depName);
     // 更新部门
     public boolean updateDept(Department updateDepartment);
     /**

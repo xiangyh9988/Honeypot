@@ -115,7 +115,7 @@ public class UserController {
             System.out.print(e);
         }
         // 与数据库中相应用户对象的密码md5对比
-        if(!passwordMD5.equals(userService.getUserById(updateJson.getIntValue("id")).getPassword()))
+        if(!passwordMD5.equals(userService.getUserByUsername(updateJson.getString("username")).getPassword()))
         {
             result.put("result", "原密码错误，不能修改！");
             return result;

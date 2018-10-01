@@ -32,7 +32,7 @@ public class DepartmentManagementServiceImpl implements DepartmentManagementServ
 
         for (Department dept : depts){
             JSONObject one = new JSONObject();
-            one.put("number", dept.getId());
+            one.put("id", dept.getId());
             one.put("department", dept.getDepName());
             one.put("departmentman", dept.getDutyName());
             array.add(one);
@@ -102,8 +102,8 @@ public class DepartmentManagementServiceImpl implements DepartmentManagementServ
         JSONObject result = new JSONObject();
         for(int i = 0; i < delArray.size(); i++){
             JSONObject obj = delArray.getJSONObject(i);
-            if(!departmentDao.delDept(obj.getIntValue("id"))){
-                result.put("result", obj.getIntValue("id"));
+            if(!departmentDao.delDept(obj.getString("depName"))){
+                result.put("result", obj.getString("depName"));
                 return result;
             }
         }
@@ -122,7 +122,7 @@ public class DepartmentManagementServiceImpl implements DepartmentManagementServ
     public JSONObject updateDept(JSONObject updateJson){
         JSONObject result = new JSONObject();
         Department update = new Department();
-        update = getDeptById(updateJson.getIntValue("id"));
+        update = getDeptByDepName(updateJson.getString("depName"));
         update.setDutyName(updateJson.getString("dutyName"));
 
         if(departmentDao.updateDept(update))

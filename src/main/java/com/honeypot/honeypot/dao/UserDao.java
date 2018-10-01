@@ -20,7 +20,7 @@ public interface UserDao {
     // 添加一个新用户
     public boolean addUser(User newUser);
     // 删除一个用户
-    public boolean delUser(int id);
+    public boolean delUser(String username);
     // 修改一个用户
     public boolean updateUser(User updateUser);
 }

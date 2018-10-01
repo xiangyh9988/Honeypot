@@ -34,10 +34,10 @@
         VALUES(#{id}, #{depName}, #{dutyName})
     </insert>
     <!-- 删除部门，根据id唯一确定 -->
-    <delete id="delDept" parameterType="int">
+    <delete id="delDept" parameterType="string">
         DELETE
         FROM department
-        WHERE id=#{id}
+        WHERE dep_name=#{depName}
     </delete>
     <!-- 更新部门信息 -->
     <update id="updateDept" parameterType="com.honeypot.honeypot.entity.Department">
