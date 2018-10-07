@@ -4,7 +4,7 @@ package com.honeypot.honeypot.entity;
  * Created by xiejing on 18/4/11.
  */
 public class Server {
-    private int id;
+    private Integer id;
     private String server;
     private String serverIp;
 

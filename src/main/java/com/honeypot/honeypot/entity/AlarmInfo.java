@@ -1,77 +1,78 @@
 package com.honeypot.honeypot.entity;
-
-import java.util.Objects;
+import java.util.Date;
 
 public class AlarmInfo {
-    private Integer Type;
-    private String ProvessName;
-    private String Path;
-    private String Explain;
-    private String ExtendPath;
+    private int id;
+    private long uniqueId;
+    private int type;
+    private String processName;
+    private String path;
+    private String explain1;
+    private String explain2;
+    private Date time;
 
-    public Integer getType() {
-        return Type;
+    public int getId() {
+        return id;
     }
 
-    public void setType(Integer type) {
-        Type = type;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getProvessName() {
-        return ProvessName;
+    public long getUniqueId() {
+        return uniqueId;
     }
 
-    public void setProvessName(String provessName) {
-        ProvessName = provessName;
+    public void setUniqueId(long uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String getProcessName() {
+        return processName;
+    }
+
+    public void setProcessName(String processName) {
+        this.processName = processName;
     }
 
     public String getPath() {
-        return Path;
+        return path;
     }
 
     public void setPath(String path) {
-        Path = path;
+        this.path = path;
     }
 
-    public String getExplain() {
-        return Explain;
+    public String getExplain1() {
+        return explain1;
     }
 
-    public void setExplain(String explain) {
-        Explain = explain;
+    public void setExplain1(String explain1) {
+        this.explain1 = explain1;
     }
 
-    public String getExtendPath() {
-        return ExtendPath;
+    public String getExplain2() {
+        return explain2;
     }
 
-    public void setExtendPath(String extendPath) {
-        ExtendPath = extendPath;
+    public void setExplain2(String explain2) {
+        this.explain2 = explain2;
     }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AlarmInfo alarmInfo = (AlarmInfo) o;
-        return Objects.equals(Type, alarmInfo.Type) &&
-                Objects.equals(ProvessName, alarmInfo.ProvessName) &&
-                Objects.equals(Path, alarmInfo.Path) &&
-                Objects.equals(Explain, alarmInfo.Explain) &&
-                Objects.equals(ExtendPath, alarmInfo.ExtendPath);
-    }
-    @Override
-    public int hashCode() {
 
-        return Objects.hash(Type, ProvessName, Path, Explain, ExtendPath);
+    public Date getTime() {
+        return time;
     }
-    @Override
-    public String toString() {
-        return "AlarmInfo{" +
-                "Type=" + Type +
-                ", ProvessName='" + ProvessName + '\'' +
-                ", Path='" + Path + '\'' +
-                ", Explain='" + Explain + '\'' +
-                ", ExtendPath='" + ExtendPath + '\'' +
-                '}';
+
+    public void setTime(Date time) {
+        this.time = time;
+
     }
 }

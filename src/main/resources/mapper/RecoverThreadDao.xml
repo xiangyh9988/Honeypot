@@ -12,7 +12,7 @@
     </select>
     <select id="getAimRecoverThread" resultType="com.honeypot.honeypot.entity.RecoverThread">
         select *
-        from pendingthread
+        from recoverthread
         where uniqueId =#{uniqueId} and currentProcessName  like concat('%',#{currentProcessName},'%') and currentProcessID  like concat('%',#{currentProcessID},'%') and pendingProcessID  like concat('%',#{pendingProcessID},'%') and dependProcessName  like concat('%',#{dependProcessName},'%') and dependProcessID  like concat('%',#{dependProcessID},'%') and time  like concat('%',#{time},'%')
     </select>
 </mapper>

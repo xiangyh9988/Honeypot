@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.Map;
+
 
 @Controller
 @CrossOrigin     //支持跨域请求，但是method一定得对应
@@ -14,6 +14,7 @@ import java.util.Map;
 public class HoneyControlController {
 
 //    @Autowired
+
 //    private UserDao userdao;2
 
     @RequestMapping(value = "/queryuser",method = RequestMethod.GET)
@@ -22,4 +23,14 @@ public class HoneyControlController {
         int  x  = 1;
         return null;
     }
+
+//    private UserDao userDao;
+//
+//    @RequestMapping(value = "/queryuser",method = RequestMethod.GET)
+//    @ResponseBody
+//   public Map<String,Object> queryUserList(){
+//        int  x  = 1;
+//        return null;
+//    }
+
 }
