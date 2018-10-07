@@ -9,6 +9,6 @@ import java.util.Map;
 @Mapper
 public interface UserDao {
 //    @Select("Select id,username,password from user")
-    public List<User> queryUser();
+     List<User> queryUser();
 
 }

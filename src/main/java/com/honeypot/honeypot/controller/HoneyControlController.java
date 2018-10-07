@@ -13,8 +13,8 @@ import java.util.Map;
 @RequestMapping(value = "/honeycontrol")
 public class HoneyControlController {
 
-    @Autowired
-    private UserDao userDao;
+//    @Autowired
+//    private UserDao userdao;2
 
     @RequestMapping(value = "/queryuser",method = RequestMethod.GET)
     @ResponseBody
