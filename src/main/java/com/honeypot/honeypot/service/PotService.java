@@ -1,9 +1,11 @@
 package com.honeypot.honeypot.service;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.honeypot.honeypot.entity.Pot;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 public interface PotService {
     /**
@@ -14,4 +16,6 @@ public interface PotService {
     List<Pot> getPotByType(String type);
     List<Pot> getHostPotByType(String type);
     List<Pot> getPotByIp(String ip);
+    @Transactional
+    JSONObject delPot(JSONArray delArray);
 }

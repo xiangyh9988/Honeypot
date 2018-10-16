@@ -12,6 +12,8 @@ public class Pot {
     private String disk;
     private String server;
     private Integer serverId;
+    private String uniqueId;
+    private String domainId;
 
     public int getId() {
         return id;
@@ -69,7 +71,6 @@ public class Pot {
         this.server = server;
     }
 
-
     public Integer getServerId() {
         return serverId;
     }
@@ -77,6 +78,14 @@ public class Pot {
     public void setServerId(Integer serverId) {
         this.serverId = serverId;
     }
+
+    public String getUniqueId(){return uniqueId;}
+
+    public void setUniqueId(String uniqueId){this.uniqueId =uniqueId;}
+
+    public String getDomainId(){return domainId;}
+
+    public void setDomainId(String domainId) { this.domainId = domainId; }
 
     @Override
     public boolean equals(Object o) {

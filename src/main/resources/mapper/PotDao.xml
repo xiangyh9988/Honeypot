@@ -21,13 +21,19 @@
     WHERE type = "复合蜜罐" or type = "路由器蜜罐"
 </select>
     <select id="getHostPotByType" resultType="com.honeypot.honeypot.entity.Pot">
-        SELECT alertsystembaseinfo.ip,alertsystembaseinfo.domainId,pot.type
-        FROM alertsystembaseinfo,pot
-        WHERE alertsystembaseinfo.ip = pot.ip AND pot.type = "win732"
+        SELECT ip,uniqueId,domainId,type
+        FROM pot
+        WHERE  uniqueId != "null"
 </select>
     <select id="getPotByIp" resultType="com.honeypot.honeypot.entity.Pot">
         SELECT *
         FROM pot
         WHERE ip LIKE #{ip}
     </select>
+    <!-- 删除一个用户，根据id唯一确定来删除 -->
+    <delete id="delPot" parameterType="string">
+        DELETE
+        FROM ip
+        WHERE ip=#{ip}
+    </delete>
 </mapper>
