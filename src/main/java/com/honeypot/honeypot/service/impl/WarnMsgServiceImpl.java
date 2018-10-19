@@ -5,10 +5,10 @@ import com.honeypot.honeypot.entity.AlarmInfo;
 import com.honeypot.honeypot.entity.AlarmInfoResult;
 import com.honeypot.honeypot.service.WarnMsgService;
 import com.honeypot.honeypot.util.AlarmInfoUtil;
-import org.apache.ibatis.annotations.Select;
+import com.honeypot.honeypot.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Date;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,40 +25,60 @@ public class WarnMsgServiceImpl implements WarnMsgService {
         Map<String,Object> modelMap = new HashMap<>();
         List<AlarmInfo> alarmInfos = new ArrayList<>();
         alarmInfos = warnMsgDao.getWarnMsgNum();
-        DateFormat dateFormat = DateFormat.getTimeInstance();
-        int warnClock14 = 0;
-        int warnClock15 = 0;
-        int warnClock16 = 0;
-        int warnClock17 = 0;
-
+//        Date now = new Date();
+        DateFormat dateFormat = DateFormat.getDateInstance();
+        String now = dateFormat.format(new Date());
+        int warnDayOne = 0;
+        int warnDayTwo = 0;
+        int warnDayThree = 0;
+        int warnDayFour = 0;
+        int warnDayFive = 0;
+        int warnDaySix = 0;
+        int warnDaySeven = 0;
+        List<String> timeList = new ArrayList<>();
+        List<Integer> sumList = new ArrayList<>();
+//        System.out.println(dateFormat.format(alarmInfo.getTime()));
+        String one =  DateUtil.getSpecifiedDayBefore(now,7);
+        String two =  DateUtil.getSpecifiedDayBefore(now,6);
+        String three =  DateUtil.getSpecifiedDayBefore(now,5);
+        String four =  DateUtil.getSpecifiedDayBefore(now,4);
+        String five =  DateUtil.getSpecifiedDayBefore(now,3);
+        String six =  DateUtil.getSpecifiedDayBefore(now,2);
+        String seven =  DateUtil.getSpecifiedDayBefore(now,1);
+        timeList.add(one.substring(5,10));
+        timeList.add(two.substring(5,10));
+        timeList.add(three.substring(5,10));
+        timeList.add(four.substring(5,10));
+        timeList.add(five.substring(5,10));
+        timeList.add(six.substring(5,10));
+        timeList.add(seven.substring(5,10));
         for(AlarmInfo alarmInfo : alarmInfos){
 //            if (dateFormat.format(alarmInfo.getTime()).substring(0,2).equals("16"))
 //            System.out.println();
-            switch (dateFormat.format(alarmInfo.getTime()).substring(0,2)){
-                case "14":
-                    warnClock14++;
-                    break;
-                case "15":
-                    warnClock15++;
-                    break;
-                case "16":
-                    warnClock16++;
-                    break;
-                case "17":
-                    warnClock17++;
-                    break;
-            }
+            String alarmInfoTime =dateFormat.format(alarmInfo.getTime());
+            if (alarmInfoTime.equals(one))
+                warnDayOne++;
+            else if (alarmInfoTime.equals(two))
+                warnDayTwo++;
+            else if (alarmInfoTime.equals(three))
+                warnDayThree++;
+            else if (alarmInfoTime.equals(four))
+                warnDayFour++;
+            else if (alarmInfoTime.equals(five))
+                warnDayFive++;
+            else if (alarmInfoTime.equals(six))
+                warnDaySix++;
+            else if (alarmInfoTime.equals(seven))
+                warnDaySeven++;
         }
-        List<String> timeList = new ArrayList<>();
-        List<Integer> sumList = new ArrayList<>();
-        sumList.add(warnClock14);
-        sumList.add(warnClock15);
-        sumList.add(warnClock16);
-        sumList.add(warnClock17);
-        timeList.add("14");
-        timeList.add("15");
-        timeList.add("16");
-        timeList.add("17");
+
+        sumList.add(warnDayOne);
+        sumList.add(warnDayTwo);
+        sumList.add(warnDayThree);
+        sumList.add(warnDayFour);
+        sumList.add(warnDayFive);
+        sumList.add(warnDaySix);
+        sumList.add(warnDaySeven);
         modelMap.put("timeList",timeList);
         modelMap.put("sumList",sumList);
         return modelMap;

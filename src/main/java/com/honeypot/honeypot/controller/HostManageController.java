@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import com.honeypot.honeypot.entity.ModelUtil;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -141,7 +142,8 @@ public class HostManageController {
      * @return
      */
     @GetMapping("/getServer")
-    public Map<String,Object> getServer(@RequestParam(value = "server",required = false, defaultValue = "") Server server){
+    public Map<String,Object> getServer(@RequestParam(value = "server",required = false, defaultValue = "") Server server, HttpSession session){
+        System.out.println("用户名是：：：：：" + session.getAttribute("username"));
         Map<String,Object> modelMap = new HashMap<String,Object>();
         Server server1 = server;
         List<Server> serverList = null;
@@ -178,8 +180,6 @@ public class HostManageController {
         Server serverNew = new Server();
         serverNew.setServerIp(serverIp);
         serverNew.setServer(server);
-        System.out.println(server + " " +serverIp);
-
         List<Server> serverList = null;
         if (serverNew != null){
             int success = serverService.addServer(serverNew);
@@ -343,7 +343,6 @@ public class HostManageController {
     @PostMapping("/addModel")
     public Map<String,Object> addModel(@RequestBody JSONObject jsonObject){
         Map<String,Object> modelMap = new HashMap<>();
-        System.out.println(jsonObject);
         Model model = new Model();
         model.setIp(jsonObject.getString("ip"));
         model.setName(jsonObject.getString("modelName"));

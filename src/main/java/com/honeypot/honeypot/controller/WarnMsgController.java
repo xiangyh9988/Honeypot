@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -51,12 +52,13 @@ public class WarnMsgController {
      * @return
      */
     @GetMapping(value = "/getWarningSum")
-    public List<Integer> getWarningSum(){
+    public List<Integer> getWarningSum(HttpSession session){
         Map<String, Integer> sums = new HashMap<String, Integer>();
         Integer sumOfSensitive = warningService.getSumOfWarningSumForYear(1);
         Integer sumOfSeq = warningService.getSumOfWarningSumForYear(0);
         Integer sumOfVir = warningService.getSumOfWarningSumForYear(2);
         List<Integer> list = new ArrayList<Integer>();
+        System.out.println("用户名是：：：：：" + session.getAttribute("username"));
         list.add(sumOfSeq);
         list.add(sumOfSensitive);
         list.add(sumOfVir);

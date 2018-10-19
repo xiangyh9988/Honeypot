@@ -13,9 +13,6 @@ import java.util.Map;
 @RequestMapping(value = "/honeycontrol")
 public class HoneyControlController {
 
-//    @Autowired
-
-//    private UserDao userdao;2
 
     @RequestMapping(value = "/queryuser",method = RequestMethod.GET)
     @ResponseBody
@@ -23,14 +20,5 @@ public class HoneyControlController {
         int  x  = 1;
         return null;
     }
-
-//    private UserDao userDao;
-//
-//    @RequestMapping(value = "/queryuser",method = RequestMethod.GET)
-//    @ResponseBody
-//   public Map<String,Object> queryUserList(){
-//        int  x  = 1;
-//        return null;
-//    }
 
 }
